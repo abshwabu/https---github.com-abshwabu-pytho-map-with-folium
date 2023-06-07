@@ -19,9 +19,13 @@ def color(elve):
 map = folium.Map(location=[48.7767982, -121.810997],zoom_start=6,tiles = "Stamen Terrain")
 
 fg = folium.FeatureGroup(name='My Map')
+
+
+
 for lt,ln,name,el in zip(lat,lon,names,elv):
     fg.add_child(folium.CircleMarker(location=[lt,ln],popup=name +'\n'+str(el)+'m',radius=6,fill_color=color(el),color='grey',fill_opacity=0.7))
 
+fg.add_child(folium.GeoJson(data=(open('world.json','r',encoding='utf-8-sig').read())))
 map.add_child(fg)
 
 map.save('map.html')
