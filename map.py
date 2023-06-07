@@ -20,7 +20,7 @@ map = folium.Map(location=[48.7767982, -121.810997],zoom_start=6,tiles = "Stamen
 
 fg = folium.FeatureGroup(name='My Map')
 for lt,ln,name,el in zip(lat,lon,names,elv):
-    fg.add_child(folium.Marker(location=[lt,ln],popup=name +'\n'+str(el)+'m',icon=folium.Icon(color=color(el))))
+    fg.add_child(folium.CircleMarker(location=[lt,ln],popup=name +'\n'+str(el)+'m',icon=folium.Icon(color=color(el))))
 
 map.add_child(fg)
 
