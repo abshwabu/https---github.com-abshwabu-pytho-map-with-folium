@@ -1,10 +1,16 @@
 import folium
+import pandas
 
-map = folium.Map(location=[8.9806, 38.7578],zoom_start=12,tiles = "Stamen Terrain")
+data = pandas.read_csv('Volcanoes.txt')
+lat = list(data['LAT'])
+lon = list(data['LON'])
+names = list(data['NAME'])
+
+map = folium.Map(location=[48.7767982, -121.810997],zoom_start=12,tiles = "Stamen Terrain")
 
 fg = folium.FeatureGroup(name='My Map')
-
-fg.add_child(folium.Marker(location=[8.9806,38.7578],popup='AA',icon=folium.Icon(color='green')))
+for lt,ln,name in zip(lat,lon,names):
+    fg.add_child(folium.Marker(location=[lt,ln],popup=name,icon=folium.Icon(color='green')))
 
 map.add_child(fg)
 
